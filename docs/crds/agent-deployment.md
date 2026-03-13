@@ -1,23 +1,23 @@
 ---
-title: AgentDeployment
-description: AgentDeployment API reference — manage pools of AI agent instances with configurable models, system prompts, and MCP tool servers on Kubernetes.
+title: ArkonisDeployment
+description: ArkonisDeployment API reference — manage pools of AI agent instances with configurable models, system prompts, and MCP tool servers on Kubernetes.
 parent: CRD Reference
 nav_order: 1
 ---
 
-# AgentDeployment
+# ArkonisDeployment
 
-**API:** `agentops.agentops.io/v1alpha1`
-**Kind:** `AgentDeployment`
-**Short name:** `agdep`
+**API:** `arkonis.dev/v1alpha1`
+**Kind:** `ArkonisDeployment`
+**Short name:** `aodep`
 
-The core resource. Analogous to a Kubernetes `Deployment` — manages a pool of agent instances running the same model, prompt, and tool configuration. The operator creates and maintains a backing `Deployment` and `Service` for each `AgentDeployment`.
+The core resource. Analogous to a Kubernetes `Deployment` — manages a pool of agent instances running the same model, prompt, and tool configuration. The operator creates and maintains a backing `Deployment` and `Service` for each `ArkonisDeployment`.
 
 ## Example
 
 ```yaml
-apiVersion: agentops.agentops.io/v1alpha1
-kind: AgentDeployment
+apiVersion: arkonis.dev/v1alpha1
+kind: ArkonisDeployment
 metadata:
   name: research-agent
   namespace: default
@@ -53,8 +53,8 @@ spec:
 | `mcpServers` | []MCPServerSpec | no | List of MCP servers to connect at pod startup. See [MCP Servers](/docs/concepts/mcp-servers). |
 | `limits` | AgentLimits | no | Per-agent resource and token limits. |
 | `livenessProbe` | AgentProbe | no | Semantic health check configuration. |
-| `configRef` | string | no | Name of an `AgentConfig` in the same namespace. Merged into effective system prompt and model settings. |
-| `memoryRef` | LocalObjectReference | no | Name of an `AgentMemory` in the same namespace. Injects memory backend config into agent pods. See [Agent Memory](/docs/concepts/memory). |
+| `configRef` | string | no | Name of an `ArkonisConfig` in the same namespace. Merged into effective system prompt and model settings. |
+| `memoryRef` | LocalObjectReference | no | Name of an `ArkonisMemory` in the same namespace. Injects memory backend config into agent pods. See [Agent Memory](/docs/concepts/memory). |
 
 ### `mcpServers[]`
 
@@ -88,7 +88,7 @@ spec:
 | `conditions` | []Condition | Standard Kubernetes conditions (Available, Progressing, Degraded). |
 
 ```bash
-kubectl describe agdep research-agent
+kubectl describe aodep research-agent
 # ...
 # Status:
 #   Ready Replicas:  2

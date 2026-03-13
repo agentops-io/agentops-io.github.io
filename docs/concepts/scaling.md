@@ -1,6 +1,6 @@
 ---
 title: Scaling
-description: Scale AI agent deployments on Kubernetes manually or automatically based on task queue depth with agentops-operator.
+description: Scale AI agent deployments on Kubernetes manually or automatically based on task queue depth with arkonis-operator.
 parent: Concepts
 nav_order: 3
 ---
@@ -16,10 +16,10 @@ spec:
   replicas: 5
 ```
 
-The operator reconciles the backing pod count to match. Scale up or down by editing the `AgentDeployment` and applying it:
+The operator reconciles the backing pod count to match. Scale up or down by editing the `ArkonisDeployment` and applying it:
 
 ```bash
-kubectl patch agdep research-agent --type=merge -p '{"spec":{"replicas":10}}'
+kubectl patch aodep research-agent --type=merge -p '{"spec":{"replicas":10}}'
 ```
 
 ## Queue-depth autoscaling (planned)

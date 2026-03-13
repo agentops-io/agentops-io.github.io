@@ -1,25 +1,25 @@
 ---
-title: AgentMemory
-description: AgentMemory API reference — configure persistent memory backends (Redis or vector store) for AI agents managed by agentops-operator.
+title: ArkonisMemory
+description: ArkonisMemory API reference — configure persistent memory backends (Redis or vector store) for AI agents managed by arkonis-operator.
 parent: CRD Reference
 nav_order: 5
 ---
 
-# AgentMemory
+# ArkonisMemory
 
-**API:** `agentops.agentops.io/v1alpha1`
-**Kind:** `AgentMemory`
-**Short name:** `agmem`
+**API:** `arkonis.dev/v1alpha1`
+**Kind:** `ArkonisMemory`
+**Short name:** `aomem`
 
-Defines a persistent memory backend for agent instances. Reference it from an `AgentDeployment` via `spec.memoryRef` to give agents durable memory across tasks.
+Defines a persistent memory backend for agent instances. Reference it from an `ArkonisDeployment` via `spec.memoryRef` to give agents durable memory across tasks.
 
-Analogous to a `PersistentVolumeClaim` — it declares where and how memory is stored, and `AgentDeployment` claims it by name.
+Analogous to a `PersistentVolumeClaim` — it declares where and how memory is stored, and `ArkonisDeployment` claims it by name.
 
 ## Example: Redis backend
 
 ```yaml
-apiVersion: agentops.agentops.io/v1alpha1
-kind: AgentMemory
+apiVersion: arkonis.dev/v1alpha1
+kind: ArkonisMemory
 metadata:
   name: research-memory
   namespace: default
@@ -35,8 +35,8 @@ spec:
 ## Example: Vector store backend
 
 ```yaml
-apiVersion: agentops.agentops.io/v1alpha1
-kind: AgentMemory
+apiVersion: arkonis.dev/v1alpha1
+kind: ArkonisMemory
 metadata:
   name: research-memory-vector
   namespace: default
@@ -51,11 +51,11 @@ spec:
     ttlSeconds: 86400
 ```
 
-## Referencing from AgentDeployment
+## Referencing from ArkonisDeployment
 
 ```yaml
-apiVersion: agentops.agentops.io/v1alpha1
-kind: AgentDeployment
+apiVersion: arkonis.dev/v1alpha1
+kind: ArkonisDeployment
 metadata:
   name: research-agent
 spec:
@@ -101,11 +101,11 @@ spec:
 | `observedGeneration` | int64 | The `.metadata.generation` this status reflects. |
 
 ```bash
-kubectl get agmem
+kubectl get aomem
 # NAME               BACKEND        AGE
 # research-memory    redis          2m
 
-kubectl describe agmem research-memory
+kubectl describe aomem research-memory
 # ...
 # Status:
 #   Conditions:
@@ -125,4 +125,4 @@ kubectl describe agmem research-memory
 ## See also
 
 - [Agent Memory concept guide](/docs/concepts/memory)
-- [AgentDeployment reference](/docs/crds/agent-deployment) — `spec.memoryRef` field
+- [ArkonisDeployment reference](/docs/crds/agent-deployment) — `spec.memoryRef` field

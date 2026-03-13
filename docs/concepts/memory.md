@@ -1,6 +1,6 @@
 ---
 title: Agent Memory
-description: How agentops-operator gives AI agents persistent memory across tasks using Redis or vector store backends.
+description: How arkonis-operator gives AI agents persistent memory across tasks using Redis or vector store backends.
 parent: Concepts
 nav_order: 4
 ---
@@ -9,7 +9,7 @@ nav_order: 4
 
 By default, each agent task starts with no knowledge of previous tasks. The agent receives its system prompt, the current task, and any tools — nothing else. This is fine for stateless workloads but breaks down for agents that need to learn from past interactions, avoid repeating work, or maintain context across a long-running job.
 
-`AgentMemory` gives agents durable memory that persists across tasks and pod restarts.
+`ArkonisMemory` gives agents durable memory that persists across tasks and pod restarts.
 
 ## How it works
 
@@ -62,11 +62,11 @@ spec:
 
 ## Attaching memory to an agent
 
-Create the `AgentMemory` resource, then reference it from the `AgentDeployment`:
+Create the `ArkonisMemory` resource, then reference it from the `ArkonisDeployment`:
 
 ```yaml
-apiVersion: agentops.agentops.io/v1alpha1
-kind: AgentMemory
+apiVersion: arkonis.dev/v1alpha1
+kind: ArkonisMemory
 metadata:
   name: research-memory
   namespace: default
@@ -77,8 +77,8 @@ spec:
       name: redis-credentials
     ttlSeconds: 7200
 ---
-apiVersion: agentops.agentops.io/v1alpha1
-kind: AgentDeployment
+apiVersion: arkonis.dev/v1alpha1
+kind: ArkonisDeployment
 metadata:
   name: research-agent
   namespace: default
@@ -89,7 +89,7 @@ spec:
     name: research-memory
 ```
 
-The same `AgentMemory` can be referenced by multiple `AgentDeployment` resources in the same namespace.
+The same `ArkonisMemory` can be referenced by multiple `ArkonisDeployment` resources in the same namespace.
 
 ## Failure behavior
 
@@ -115,5 +115,5 @@ The operator injects these into every agent pod that has a `memoryRef`:
 
 ## See also
 
-- [AgentMemory reference](/docs/crds/agent-memory) — full field reference
-- [AgentDeployment reference](/docs/crds/agent-deployment) — `spec.memoryRef` field
+- [ArkonisMemory reference](/docs/crds/agent-memory) — full field reference
+- [ArkonisDeployment reference](/docs/crds/agent-deployment) — `spec.memoryRef` field

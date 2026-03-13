@@ -1,23 +1,23 @@
 ---
-title: AgentService
-description: AgentService API reference — route tasks to AI agents using round-robin, least-busy, or random load balancing strategies in agentops-operator.
+title: ArkonisService
+description: ArkonisService API reference — route tasks to AI agents using round-robin, least-busy, or random load balancing strategies in arkonis-operator.
 parent: CRD Reference
 nav_order: 2
 ---
 
-# AgentService
+# ArkonisService
 
-**API:** `agentops.agentops.io/v1alpha1`
-**Kind:** `AgentService`
-**Short name:** `agsvc`
+**API:** `arkonis.dev/v1alpha1`
+**Kind:** `ArkonisService`
+**Short name:** `aosvc`
 
-Analogous to a Kubernetes `Service`. Routes incoming tasks to available agent instances, decoupling task producers from the agent pool. An `AgentService` selects a target `AgentDeployment` and applies a routing strategy to distribute tasks across ready pods.
+Analogous to a Kubernetes `Service`. Routes incoming tasks to available agent instances, decoupling task producers from the agent pool. An `ArkonisService` selects a target `ArkonisDeployment` and applies a routing strategy to distribute tasks across ready pods.
 
 ## Example
 
 ```yaml
-apiVersion: agentops.agentops.io/v1alpha1
-kind: AgentService
+apiVersion: arkonis.dev/v1alpha1
+kind: ArkonisService
 metadata:
   name: research-service
   namespace: default
@@ -37,7 +37,7 @@ spec:
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `selector` | ServiceSelector | yes | Identifies the target `AgentDeployment`. |
+| `selector` | ServiceSelector | yes | Identifies the target `ArkonisDeployment`. |
 | `routing` | RoutingSpec | no | Task routing configuration. |
 | `ports` | []PortSpec | no | Ports exposed by the service. |
 
@@ -45,7 +45,7 @@ spec:
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `agentDeployment` | string | yes | Name of the `AgentDeployment` in the same namespace to route tasks to. |
+| `agentDeployment` | string | yes | Name of the `ArkonisDeployment` in the same namespace to route tasks to. |
 
 ### `routing`
 

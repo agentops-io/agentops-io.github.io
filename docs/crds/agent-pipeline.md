@@ -1,23 +1,23 @@
 ---
-title: AgentPipeline
-description: AgentPipeline API reference — define DAG workflows where AI agent outputs feed into subsequent agent inputs in agentops-operator.
+title: ArkonisPipeline
+description: ArkonisPipeline API reference — define DAG workflows where AI agent outputs feed into subsequent agent inputs in arkonis-operator.
 parent: CRD Reference
 nav_order: 4
 ---
 
-# AgentPipeline
+# ArkonisPipeline
 
-**API:** `agentops.agentops.io/v1alpha1`
-**Kind:** `AgentPipeline`
-**Short name:** `agpipe`
+**API:** `arkonis.dev/v1alpha1`
+**Kind:** `ArkonisPipeline`
+**Short name:** `aopipe`
 
 A novel resource with no Kubernetes equivalent. Defines a directed acyclic graph (DAG) of agents where the output of one step feeds into the input of the next. The primitive for declarative multi-agent workflows.
 
 ## Example
 
 ```yaml
-apiVersion: agentops.agentops.io/v1alpha1
-kind: AgentPipeline
+apiVersion: arkonis.dev/v1alpha1
+kind: ArkonisPipeline
 metadata:
   name: research-write-review
   namespace: default
@@ -61,7 +61,7 @@ graph LR
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `name` | string | yes | Unique step name within the pipeline. Referenced in template expressions as `{{ .steps.<name>.output }}`. |
-| `agentDeployment` | string | yes | Name of the `AgentDeployment` in the same namespace that will execute this step. |
+| `agentDeployment` | string | yes | Name of the `ArkonisDeployment` in the same namespace that will execute this step. |
 | `dependsOn` | []string | no | List of step names that must complete before this step runs. Omit for steps with no dependencies (they run immediately). |
 | `inputs` | map[string]string | no | Key-value inputs passed to the agent for this step. Values are template expressions or literal strings. |
 
@@ -88,9 +88,9 @@ Templates are evaluated at runtime by the pipeline controller when each step is 
 ## Alpha limitations
 
 {: .warning }
-AgentPipeline is in early alpha. The following limitations apply in v0.0.1:
+ArkonisPipeline is in early alpha. The following limitations apply in v0.0.1:
 
 - Parallel step execution (steps with no shared `dependsOn` ancestor) is not yet implemented. Steps run in dependency order, one at a time.
 - There is no retry policy for failed steps.
 - Pipeline inputs are currently limited to string values.
-- Requires Redis — `TASK_QUEUE_URL` must be set in the `agentops-operator-api-keys` secret.
+- Requires Redis — `TASK_QUEUE_URL` must be set in the `arkonis-operator-api-keys` secret.

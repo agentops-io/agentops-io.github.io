@@ -1,7 +1,7 @@
-title: agentops-operator
+title: ARKONIS
 description: Kubernetes-native AI agent infrastructure
-url: https://agentops-io.com
-logo: https://agentops-io.com/logo.png
+url: https://arkonis.dev
+logo: https://arkonis.dev/logo.png
 
 remote_theme: just-the-docs/just-the-docs@v0.10.0
 
@@ -18,9 +18,9 @@ mermaid:
   version: "10"
 
 aux_links:
-  GitHub: https://github.com/agentops-io/agentops-operator
+  GitHub: https://github.com/arkonis-dev/arkonis-operator
 
-footer_content: "Apache 2.0 · agentops-io"
+footer_content: "Apache 2.0 · ARKONIS"
 
 exclude:
   - README.md

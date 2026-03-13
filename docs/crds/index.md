@@ -1,18 +1,18 @@
 ---
 title: CRD Reference
-description: Full API reference for AgentDeployment, AgentService, AgentConfig, and AgentPipeline custom resources in agentops-operator.
+description: Full API reference for ArkonisDeployment, ArkonisService, ArkonisConfig, and ArkonisPipeline custom resources in arkonis-operator.
 nav_order: 4
 has_children: true
 ---
 
 # CRD Reference
 
-Full field reference for all agentops-operator resource types.
+Full field reference for all arkonis-operator resource types.
 
 | Resource | Short name | Reference |
 |---|---|---|
-| `AgentDeployment` | `agdep` | [Reference](agent-deployment) |
-| `AgentService` | `agsvc` | [Reference](agent-service) |
-| `AgentConfig` | `agcfg` | [Reference](agent-config) |
-| `AgentPipeline` | `agpipe` | [Reference](agent-pipeline) |
-| `AgentMemory` | `agmem` | [Reference](agent-memory) |
+| `ArkonisDeployment` | `aodep` | [Reference](agent-deployment) |
+| `ArkonisService` | `aosvc` | [Reference](agent-service) |
+| `ArkonisConfig` | `aocfg` | [Reference](agent-config) |
+| `ArkonisPipeline` | `aopipe` | [Reference](agent-pipeline) |
+| `ArkonisMemory` | `aomem` | [Reference](agent-memory) |
