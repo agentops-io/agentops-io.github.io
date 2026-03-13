@@ -115,5 +115,5 @@ The operator injects these into every agent pod that has a `memoryRef`:
 
 ## See also
 
-- [AgentMemory reference](../crds/agent-memory) — full field reference
-- [AgentDeployment reference](../crds/agent-deployment) — `spec.memoryRef` field
+- [AgentMemory reference](/docs/crds/agent-memory) — full field reference
+- [AgentDeployment reference](/docs/crds/agent-deployment) — `spec.memoryRef` field

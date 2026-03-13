@@ -124,5 +124,5 @@ kubectl describe agmem research-memory
 
 ## See also
 
-- [Agent Memory concept guide](../concepts/memory)
-- [AgentDeployment reference](agent-deployment) — `spec.memoryRef` field
+- [Agent Memory concept guide](/docs/concepts/memory)
+- [AgentDeployment reference](/docs/crds/agent-deployment) — `spec.memoryRef` field
