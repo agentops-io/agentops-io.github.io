@@ -18,8 +18,9 @@ Everything integrates with the Kubernetes ecosystem you already use. GitOps work
 | `AgentService` | `Service` | Routes incoming tasks to available agent instances using configurable load balancing strategies (round-robin, least-busy, random). |
 | `AgentConfig` | `ConfigMap` | Reusable prompt fragments and model settings. Referenced from `AgentDeployment` via `spec.configRef` to keep configuration DRY. |
 | `AgentPipeline` | *(novel)* | Defines a DAG of agents where outputs feed into inputs. The primitive for declarative multi-agent workflows. |
+| `AgentMemory` | `PersistentVolumeClaim` | Configures a persistent memory backend (Redis or vector store) for agent instances. Referenced from `AgentDeployment` via `spec.memoryRef`. |
 
-Short names: `agdep`, `agsvc`, `agcfg`, `agpipe`
+Short names: `agdep`, `agsvc`, `agcfg`, `agpipe`, `agmem`
 
 ## Next steps
 

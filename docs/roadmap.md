@@ -59,8 +59,14 @@ A supervisor agent breaks a task at runtime and delegates sub-tasks to specialis
 ### Conditional and looping pipelines
 Steps can branch based on what a previous agent returned, or repeat until a quality threshold is met. Useful for research loops, validation workflows, and iterative refinement tasks.
 
+### Inline tool definitions
+For simple integrations that do not warrant a full MCP server, declare tools directly in the agent spec as HTTP endpoints. The agent calls your URL when the tool is invoked and returns the response to the model. No extra infrastructure required.
+
 ### Multi-model support
 Run agents on OpenAI, Google Gemini, or other providers alongside Anthropic. Route tasks to the cheapest or fastest model that meets your quality bar. Mix models within a single pipeline.
+
+### LiteLLM integration
+Optional integration with [LiteLLM](https://github.com/BerriAI/litellm) for teams that want cross-provider failover, unified rate limiting, or namespace-level token quotas. The operator injects the proxy endpoint automatically. You get the benefits of a smart LLM proxy without agentops-operator needing to sit in the call path.
 
 ### Cost controls and token budgets
 Track token usage per agent, per namespace, and per team. Set daily token limits and the operator automatically pauses an agent that exceeds its budget and resumes it the next day. No application code changes required.

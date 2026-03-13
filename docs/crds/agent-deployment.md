@@ -54,6 +54,7 @@ spec:
 | `limits` | AgentLimits | no | Per-agent resource and token limits. |
 | `livenessProbe` | AgentProbe | no | Semantic health check configuration. |
 | `configRef` | string | no | Name of an `AgentConfig` in the same namespace. Merged into effective system prompt and model settings. |
+| `memoryRef` | LocalObjectReference | no | Name of an `AgentMemory` in the same namespace. Injects memory backend config into agent pods. See [Agent Memory](../concepts/memory). |
 
 ### `mcpServers[]`
 

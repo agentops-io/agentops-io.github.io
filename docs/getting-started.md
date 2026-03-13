@@ -104,6 +104,8 @@ kubectl get pods -l agentops.io/deployment=research-agent
 - [AgentService reference](/docs/crds/agent-service) — routing tasks to agents
 - [AgentConfig reference](/docs/crds/agent-config) — reusable configuration
 - [AgentPipeline reference](/docs/crds/agent-pipeline) — multi-agent DAGs
+- [AgentMemory reference](/docs/crds/agent-memory) — persistent memory backends
 - [Semantic Health Checks](/docs/concepts/semantic-health-checks) — how readiness probes work
 - [MCP Servers](/docs/concepts/mcp-servers) — connecting tools to agents
+- [Agent Memory](/docs/concepts/memory) — memory across tasks
 - [Scaling](/docs/concepts/scaling) — replicas and limits
