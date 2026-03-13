@@ -11,13 +11,13 @@ nav_order: 2
 
 [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) is a standard interface for providing tools and context to LLMs. An MCP server exposes a set of callable tools — functions the model can invoke during a conversation. Examples: web search, database queries, file access, API calls.
 
-agentops-operator connects agent pods to MCP servers at startup, making those tools available to the Anthropic API tool-use loop.
+agentops-operator connects agent pods to MCP servers at startup, making those tools available to the configured LLM provider's tool-use loop.
 
 ## How agentops-operator connects
 
 MCP servers are specified in `spec.mcpServers`. At pod startup, the agent runtime reads this list from the `AGENT_MCP_SERVERS` environment variable (injected as a JSON array by the operator) and establishes SSE (Server-Sent Events) connections to each server.
 
-The connection is established before the agent begins polling the task queue. Tool definitions from all connected MCP servers are collected and passed to the Anthropic API on every call.
+The connection is established before the agent begins polling the task queue. Tool definitions from all connected MCP servers are collected and passed to the configured LLM provider on every call.
 
 ## Spec field
 
@@ -46,7 +46,7 @@ memory__store
 memory__recall
 ```
 
-The Anthropic API receives the prefixed names; the runtime strips the prefix before forwarding calls to the MCP server.
+The LLM provider receives the prefixed names; the runtime strips the prefix before forwarding calls to the MCP server.
 
 ## Failure behavior
 

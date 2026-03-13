@@ -20,14 +20,14 @@ Each agent pod exposes two health endpoints on port `8080`:
 | Endpoint | Type | Behavior |
 |---|---|---|
 | `GET /healthz` | Liveness | Always returns `200 OK` if the process is running. Used by Kubernetes to decide whether to restart the container. |
-| `GET /readyz` | Semantic readiness | Calls the Anthropic API with a validation prompt and checks the response. Returns `200 OK` if the output passes validation; returns `503 Service Unavailable` if it fails. |
+| `GET /readyz` | Semantic readiness | Calls the configured LLM provider with a validation prompt and checks the response. Returns `200 OK` if the output passes validation; returns `503 Service Unavailable` if it fails. |
 
 When `/readyz` returns `503`, Kubernetes marks the pod `NotReady`. The `AgentService` stops routing tasks to that pod. The operator logs the failure and the pod continues trying — if the underlying issue resolves (e.g., transient API error), the pod recovers automatically.
 
 ## How the readiness probe works
 
 1. The agent runtime receives an HTTP `GET /readyz` from the kubelet.
-2. The runtime sends a fixed internal validation prompt to the Anthropic API using the agent's configured model.
+2. The runtime sends a validation prompt to the configured LLM provider using the agent's model.
 3. The response is checked against expected output characteristics (correct format, non-empty, no error indicators).
 4. If the check passes, the endpoint returns `200`. If it fails or the API call errors, it returns `503`.
 
@@ -46,7 +46,4 @@ spec:
 |---|---|---|---|
 | `type` | string | `ping` | `ping` — HTTP reachability only. `semantic` — enables `/readyz` API validation. |
 | `intervalSeconds` | int | `60` | Interval between semantic checks. |
-| `validatorPrompt` | string | *(internal)* | Custom prompt to use for validation. Planned for v1beta1; currently unused. |
-
-{: .note }
-In v1alpha1, `validatorPrompt` is defined in the spec but not yet wired into the probe logic. The runtime uses a fixed internal validation prompt. Custom validator prompts are planned for v1beta1.
+| `validatorPrompt` | string | *(internal default)* | Custom prompt sent to the LLM during `/readyz` validation. Falls back to a built-in default if not set. |

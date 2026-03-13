@@ -10,7 +10,7 @@ nav_order: 2
 
 - Kubernetes 1.26+
 - `kubectl` configured against your cluster
-- An Anthropic API key
+- An API key for your chosen LLM provider (Anthropic by default)
 
 For local development, create a cluster first:
 
@@ -45,6 +45,8 @@ kubectl create secret generic agentops-operator-api-keys \
   --from-literal=ANTHROPIC_API_KEY=sk-ant-... \
   --from-literal=TASK_QUEUE_URL=redis.agent-infra.svc.cluster.local:6379
 ```
+
+The secret key name depends on your provider. `ANTHROPIC_API_KEY` is used by the default Anthropic provider. Other providers (once supported) will document their own key names. The `TASK_QUEUE_URL` is always required regardless of provider.
 
 ### 4. Deploy your first agent
 

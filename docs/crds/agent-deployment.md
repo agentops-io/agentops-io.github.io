@@ -48,7 +48,8 @@ spec:
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `replicas` | int32 | no | Number of agent pod replicas. Defaults to `1`. |
-| `model` | string | yes | Model identifier passed to the Anthropic API (e.g. `claude-sonnet-4-20250514`). |
+| `provider` | string | no | LLM provider to use. Defaults to `anthropic`. Set via `AGENT_PROVIDER`. |
+| `model` | string | yes | Model identifier passed to the configured LLM provider (e.g. `claude-sonnet-4-20250514` for Anthropic). |
 | `systemPrompt` | string | yes | System prompt injected into every API call made by agent pods. |
 | `mcpServers` | []MCPServerSpec | no | List of MCP servers to connect at pod startup. See [MCP Servers](../concepts/mcp-servers). |
 | `limits` | AgentLimits | no | Per-agent resource and token limits. |
@@ -66,7 +67,7 @@ spec:
 
 | Field | Type | Default | Description |
 |---|---|---|---|
-| `maxTokensPerCall` | int | `4096` | Token budget (input + output) per Anthropic API call. |
+| `maxTokensPerCall` | int | `4096` | Token budget (input + output) per LLM API call. |
 | `maxConcurrentTasks` | int | `1` | Max tasks a single pod processes simultaneously. |
 | `timeoutSeconds` | int | `60` | Per-task timeout. Task is abandoned and an error is returned after this duration. |
 
@@ -76,7 +77,7 @@ spec:
 |---|---|---|---|
 | `type` | string | `ping` | `ping` — HTTP reachability only. `semantic` — enables `/readyz` API validation. |
 | `intervalSeconds` | int | `60` | Interval between semantic validation checks. |
-| `validatorPrompt` | string | *(internal)* | Custom validation prompt. Planned for v1beta1; currently unused. |
+| `validatorPrompt` | string | *(internal default)* | Custom prompt sent to the LLM during `/readyz` semantic validation. Falls back to a built-in default if not set. |
 
 ## Status fields
 
