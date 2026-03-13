@@ -48,7 +48,7 @@ spec:
 
 ### "We need to roll back our agent after a bad deploy"
 
-A system prompt change is a pull request. A rollback is `git revert`. The same GitOps workflow your team already uses for services works identically for agents.
+A system prompt change is a pull request. A rollback is a sync revert in ArgoCD or Flux — the same GitOps workflow your team already uses for every other service works identically for agents.
 
 ### "Compliance requires an audit trail of every agent configuration change"
 

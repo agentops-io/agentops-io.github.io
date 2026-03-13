@@ -15,8 +15,8 @@
     <div class="container">
       <span class="logo">agentops-operator</span>
       <nav>
-        <a href="#concepts">Concepts</a>
-        <a href="#how-it-works">How it works</a>
+        <a href="https://agentops-io.com/docs/">Docs</a>
+        <a href="https://agentops-io.com/docs/roadmap">Roadmap</a>
         <a href="https://github.com/agentops-io/agentops-operator" class="btn-outline" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </div>
@@ -138,6 +138,18 @@ research-agent    claude-sonnet-4-20250514   5          5       2m</span></code>
       dependsOn: [research]
       agentDeployment: writer-agent</code></pre>
           </div>
+
+          <div class="concept-card">
+            <div class="concept-kind">AgentMemory</div>
+            <div class="concept-analog">like <code>PersistentVolumeClaim</code></div>
+            <p>Defines the persistent memory backend for agent instances. Agents remember context across tasks — not just within a single conversation. Supports Redis and vector stores.</p>
+            <pre class="concept-yaml"><code>spec:
+  backend: vector-store
+  vectorStore:
+    provider: qdrant
+    endpoint: http://qdrant:6333
+    collection: research-memories</code></pre>
+          </div>
         </div>
       </div>
     </section>
@@ -165,15 +177,15 @@ research-agent    claude-sonnet-4-20250514   5          5       2m</span></code>
           <div class="step">
             <div class="step-num">3</div>
             <div class="step-body">
-              <h3>Agents poll and process</h3>
-              <p>Each agent pod reads tasks from a Redis Streams queue, calls the Anthropic API in a tool-use loop, and writes results back. The operator handles health checks and restarts.</p>
+              <h3>Agents pick up tasks and run</h3>
+              <p>Each agent pod pulls tasks from the queue, calls the configured model with its tools, and writes results back. The operator monitors output quality and restarts agents that degrade.</p>
             </div>
           </div>
           <div class="step">
             <div class="step-num">4</div>
             <div class="step-body">
-              <h3>GitOps and rollback just work</h3>
-              <p>Promoting a new system prompt is a pull request. Rolling back a bad prompt change is <code>git revert</code>. Audit history is your git log.</p>
+              <h3>ArgoCD and Flux work out of the box</h3>
+              <p>Promoting a new system prompt is a pull request. Your existing GitOps tooling — ArgoCD, Flux, or anything that speaks <code>kubectl</code> — syncs it to the cluster exactly like any other resource change.</p>
             </div>
           </div>
         </div>
@@ -212,7 +224,7 @@ research-agent    claude-sonnet-4-20250514   5          5       2m</span></code>
     <section class="cta-section">
       <div class="container">
         <h2>Ready to deploy your first agent?</h2>
-        <p>Install the CRDs, deploy Redis, create your API key secret, and apply your first AgentDeployment — all in under five minutes.</p>
+        <p>Install the operator, apply your first AgentDeployment, and start routing tasks — no custom orchestration code required.</p>
         <a href="https://agentops-io.com/docs/getting-started" class="btn-primary" target="_blank" rel="noopener">Read the docs →</a>
       </div>
     </section>
@@ -222,6 +234,8 @@ research-agent    claude-sonnet-4-20250514   5          5       2m</span></code>
     <div class="container">
       <span>agentops-operator · Apache 2.0</span>
       <nav>
+        <a href="https://agentops-io.com/docs/">Docs</a>
+        <a href="https://agentops-io.com/docs/roadmap">Roadmap</a>
         <a href="https://github.com/agentops-io/agentops-operator" target="_blank" rel="noopener">GitHub</a>
         <a href="https://github.com/agentops-io/agentops-operator/issues" target="_blank" rel="noopener">Issues</a>
       </nav>

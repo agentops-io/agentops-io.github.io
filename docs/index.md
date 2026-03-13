@@ -8,7 +8,7 @@ nav_order: 1
 
 agentops-operator is a Kubernetes operator that introduces AI agents as first-class cluster resources. Instead of managing containers, you manage LLM-based agents — each defined by a model, a system prompt, and a set of MCP servers that provide tools. The operator handles scheduling, scaling, health checking, and lifecycle management using the same reconciliation model as any other Kubernetes controller.
 
-Everything integrates with the Kubernetes ecosystem you already use. GitOps workflows, RBAC, namespaces, and `kubectl` all work without modification. Promoting a new system prompt is a pull request; rolling it back is `git revert`.
+Everything integrates with the Kubernetes ecosystem you already use. GitOps workflows, RBAC, namespaces, and `kubectl` all work without modification. Promoting a new system prompt is a pull request; rolling it back is a revert in ArgoCD or Flux — the same workflow you already use for everything else.
 
 ## CRDs
 
